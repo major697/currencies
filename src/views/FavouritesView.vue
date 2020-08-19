@@ -1,7 +1,12 @@
 <template>
   <div>
-    <div v-show="currencyGroup.length" class="home__button">
-      <ButtonPrimary name="Remove" @click.native="remove" />
+    <div class="home__button">
+      <ButtonPrimary
+        name="Remove"
+        v-if="GET_CURRENCY_FAV.length"
+        :disabled="!currencyGroup.length"
+        @click.native="modalRemove = true"
+      />
     </div>
     <CurrencyTable
       :currencies="GET_CURRENCY_FAV"
@@ -9,9 +14,18 @@
       :is-fav="true"
       @action-to-fav="actionToFav"
     />
-    <CenterModal>
+    <CenterModal
+      v-if="modalRemove"
+      @close-modal="modalRemove = false"
+    >
       <template #header>
-        <h1>Here might be a page title</h1>
+        Remove currency
+      </template>
+      <template #body>
+        Remove: {{ currencyGroup.join(', ') }}?
+      </template>
+      <template #body-button>
+        <ButtonPrimary name="Remove" @click.native="removeCurrency" />
       </template>
     </CenterModal>
   </div>
@@ -47,6 +61,7 @@ export default {
   data() {
     return {
       currencyGroup: [],
+      modalRemove: false,
     }
   },
   computed: {
@@ -56,16 +71,18 @@ export default {
   },
   methods: {
     ...mapActions('CurrencyModule', [
-      ActionsCurrency.FETCH_ACTION_CURRENCY_TO_FAV,
+      ActionsCurrency.FETCH_CURRENCY_ACTION_TO_FAV,
+      ActionsCurrency.FETCH_CURRENCY_REMOVE,
     ]),
     actionToFav(code, action) {
-      this.FETCH_ACTION_CURRENCY_TO_FAV({
+      this.FETCH_CURRENCY_ACTION_TO_FAV({
         code,
         action,
       })
     },
-    remove() {
-      console.log(this.currencyGroup)
+    removeCurrency() {
+      this.FETCH_CURRENCY_REMOVE(this.currencyGroup)
+      this.modalRemove = false
     },
   },
 }

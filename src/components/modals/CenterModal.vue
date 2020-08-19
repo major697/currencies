@@ -19,9 +19,11 @@
               </div>
             </div>
           </div>
-
           <div class="modal-mask__body">
             <slot name="body"></slot>
+          </div>
+          <div class="modal-mask__body__button">
+            <slot name="body-button"></slot>
           </div>
         </div>
       </div>

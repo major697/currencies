@@ -40,10 +40,10 @@ export default {
   },
   methods: {
     ...mapActions('CurrencyModule', [
-      ActionsCurrency.FETCH_ACTION_CURRENCY_TO_FAV,
+      ActionsCurrency.FETCH_CURRENCY_ACTION_TO_FAV,
     ]),
     actionToFav(code, action) {
-      this.FETCH_ACTION_CURRENCY_TO_FAV({
+      this.FETCH_CURRENCY_ACTION_TO_FAV({
         code,
         action,
       })

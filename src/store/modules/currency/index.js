@@ -34,7 +34,7 @@ export default {
         }
       }
     },
-    async [ActionsCurrency.FETCH_ACTION_CURRENCY_TO_FAV](
+    async [ActionsCurrency.FETCH_CURRENCY_ACTION_TO_FAV](
       { state, commit },
       payload,
     ) {
@@ -45,6 +45,16 @@ export default {
         fav: element.code === code ? action : element.fav,
       }))
       commit(MutationsCurrency.SET_CURRENCY_DATA, favCurrency)
+    },
+    async [ActionsCurrency.FETCH_CURRENCY_REMOVE](
+      { state, commit },
+      payload,
+    ) {
+      console.log(payload)
+      const remCurrency = state.currency.data.map(element => {
+        console.log(element)
+      })
+      commit(MutationsCurrency.SET_CURRENCY_DATA, remCurrency)
     },
   },
   mutations: {

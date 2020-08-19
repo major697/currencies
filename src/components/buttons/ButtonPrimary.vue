@@ -1,5 +1,5 @@
 <template>
-  <button class="button">{{ name }}</button>
+  <button class="button" :disabled="disabled">{{ name }}</button>
 </template>
 
 <style lang="scss" scoped>
@@ -13,6 +13,10 @@ export default {
     name: {
       type: String,
       required: true,
+    },
+    disabled: {
+      type: Boolean,
+      required: false,
     },
   },
 }

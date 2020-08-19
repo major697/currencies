@@ -1,6 +1,6 @@
 .button {
   background-color: transparent;
-  border: 1px solid map-get($colors, white);
+  border: 1px solid map-get($colors, black);
   color: map-get($colors, purple);
   cursor: pointer;
   padding: map-get($margins, m1);
@@ -8,8 +8,17 @@
   margin: map-get($margins, m1) 0;
   transition: $transition;
 
+  &:disabled {
+    background-color: map-get($colors, block);
+    border-color: transparent;
+  }
+
   &:hover {
     border-color: map-get($colors, purple);
+
+    &:disabled {
+      border-color: transparent;
+    }
   }
 
   &:focus {
