@@ -1,0 +1,87 @@
+.table {
+  width: 100%;
+  border-collapse: collapse;
+
+  &__header {
+    font-size: map-get($fontSizes, title);
+    color: map-get($colors, purple);
+    padding: map-get($margins, m3) 0;
+
+    &__item {
+      padding: map-get($margins, m1) 0;
+      font-weight: 100;
+      border: 1px solid map-get($colors, purple);
+
+      &__hidden {
+        @media (max-width: map-get($widths, xs)) {
+          display: none;
+        }
+      }
+    }
+  }
+
+  &__body {
+    font-size: map-get($fontSizes, body);
+    color: map-get($colors, black);
+    text-align: center;
+    border: 1px solid map-get($colors, purple);
+    border-bottom-color: map-get($colors, white);
+
+    &:last-child {
+      border-bottom-color: map-get($colors, purple);
+    }
+
+    &:hover {
+      background-color: map-get($colors, purple);
+      color: map-get($colors, white);
+
+      .table__body__item__star__number {
+        color: map-get($colors, white);
+      }
+    }
+
+    &__item {
+      padding: map-get($margins, m2);
+
+      &__hidden {
+        @media (max-width: map-get($widths, xs)) {
+          display: none;
+        }
+      }
+
+      &__star {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+
+        &__fav {
+          cursor: pointer;
+          padding: 0 map-get($margins, m1);
+          background-image: url('~@/assets/img/svg/star-black.svg');
+          background-repeat: no-repeat;
+          width: 12px;
+          height: 12px;
+          transition: $transition;
+
+          &:hover {
+            background-image: url('~@/assets/img/svg/star-gold.svg');
+          }
+        }
+
+        &__fav--un-fav {
+          background-image: url('~@/assets/img/svg/star-gold.svg');
+
+          &:hover {
+            background-image: url('~@/assets/img/svg/star-black.svg');
+          }
+        }
+
+        &__number {
+          color: map-get($colors, purple);
+          font-weight: 800;
+        }
+      }
+    }
+  }
+}

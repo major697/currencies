@@ -1,0 +1,18 @@
+.button {
+  background-color: transparent;
+  border: 1px solid map-get($colors, white);
+  color: map-get($colors, purple);
+  cursor: pointer;
+  padding: map-get($margins, m1);
+  border-radius: $radius;
+  margin: map-get($margins, m1) 0;
+  transition: $transition;
+
+  &:hover {
+    border-color: map-get($colors, purple);
+  }
+
+  &:focus {
+    outline: none;
+  }
+}

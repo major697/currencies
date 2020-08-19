@@ -3,6 +3,21 @@
     text-align: center;
     color: map-get($colors, purple);
     font-size: map-get($fontSizes, bigTitle);
-    padding: map-get($margins, m3) 0;
+    padding-top: map-get($margins, m3);
+    padding-bottom: map-get($margins, m5);
+
+    @media (max-width: map-get($widths, xs)) {
+      padding-bottom: map-get($margins, m1);
+    }
+  }
+
+  &__button {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+
+    @media (max-width: map-get($widths, xs)) {
+      justify-content: center;
+    }
   }
 }
