@@ -12,25 +12,26 @@ export default {
     currency: {
       data: [],
       date: null,
-      favourities: [],
     },
   },
   actions: {
-    async [ActionsCurrency.FETCH_CURRENCY]({ commit }) {
-      try {
-        const { data } = await getCurrencies()
+    async [ActionsCurrency.FETCH_CURRENCY]({ state, commit }) {
+      if (!state.currency.data.length) {
+        try {
+          const { data } = await getCurrencies()
 
-        const convertDataFav = data[0].rates.map(element => ({
-          ...element,
-          fav: false,
-        }))
-        commit(MutationsCurrency.SET_CURRENCY_DATA, convertDataFav)
-        commit(
-          MutationsCurrency.SET_CURRENCY_DATE,
-          data[0].effectiveDate,
-        )
-      } catch ({ response }) {
-        console.error(response)
+          const convertDataFav = data[0].rates.map(element => ({
+            ...element,
+            fav: false,
+          }))
+          commit(MutationsCurrency.SET_CURRENCY_DATA, convertDataFav)
+          commit(
+            MutationsCurrency.SET_CURRENCY_DATE,
+            data[0].effectiveDate,
+          )
+        } catch ({ response }) {
+          console.error(response)
+        }
       }
     },
     async [ActionsCurrency.FETCH_ACTION_CURRENCY_TO_FAV](
@@ -44,7 +45,6 @@ export default {
         fav: element.code === code ? action : element.fav,
       }))
       commit(MutationsCurrency.SET_CURRENCY_DATA, favCurrency)
-      commit(MutationsCurrency.SET_CURRENCY_TO_FAV, code)
     },
   },
   mutations: {
@@ -54,13 +54,10 @@ export default {
     [MutationsCurrency.SET_CURRENCY_DATE](state, payload) {
       state.currency.date = payload
     },
-    [MutationsCurrency.SET_CURRENCY_TO_FAV](state, payload) {
-      state.currency.favourities.push(payload)
-    },
   },
   getters: {
-    [GettersCurrency.GET_CURRENCY](state) {
-      console.log(state)
+    [GettersCurrency.GET_CURRENCY_FAV](state) {
+      return state.currency.data.filter(({ fav }) => fav)
     },
   },
 }

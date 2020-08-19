@@ -1,6 +1,7 @@
 <template>
   <div class="app">
     <div class="app__cnt">
+      <div class="app__cnt__title">Currencies</div>
       <router-view />
     </div>
   </div>
@@ -11,7 +12,16 @@
 </style>
 
 <script>
+import { mapActions } from 'vuex'
+import { ActionsCurrency } from '@/store/modules/currency/types'
+
 export default {
   name: 'App',
+  created() {
+    this.FETCH_CURRENCY()
+  },
+  methods: {
+    ...mapActions('CurrencyModule', [ActionsCurrency.FETCH_CURRENCY]),
+  },
 }
 </script>

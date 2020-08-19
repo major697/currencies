@@ -1,42 +1,56 @@
 <template>
-  <table class="table">
-    <tr class="table__header">
-      <th class="table__header__item">#</th>
-      <th class="table__header__item table__header__item__hidden">
-        currency
-      </th>
-      <th class="table__header__item">code</th>
-      <th class="table__header__item">mid</th>
-    </tr>
-    <tr
-      class="table__body"
-      v-for="(currency, i) in getCurrencies"
-      :key="currency.code"
-    >
-      <td class="table__body__item">
-        <div class="table__body__item__star">
-          <div
-            @click="addToFav(currency.code, !currency.fav)"
-            class="table__body__item__star__fav"
-            :class="{
-              'table__body__item__star__fav--un-fav': currency.fav,
-            }"
-            title="add to favourite"
-          ></div>
-          <div class="table__body__item__star__number">
-            {{ i + 1 }}
+  <div>
+    <table v-if="currencies.length" class="table">
+      <tr class="table__header">
+        <th class="table__header__item">#</th>
+        <th class="table__header__item table__header__item__hidden">
+          currency
+        </th>
+        <th class="table__header__item">code</th>
+        <th class="table__header__item">mid</th>
+      </tr>
+      <tr
+        class="table__body"
+        v-for="(currency, i) in currencies"
+        :key="currency.code"
+      >
+        <td class="table__body__item">
+          <div class="table__body__item__star">
+            <input
+              v-if="isFav"
+              type="checkbox"
+              v-model="currencyGroup"
+              @change="$emit('update:currency-group', currencyGroup)"
+              :value="currency.code"
+              title="select to remove"
+            />
+            <div
+              @click="actionToFav(currency.code, !currency.fav)"
+              class="table__body__item__star__fav"
+              :class="{
+                'table__body__item__star__fav--un-fav': currency.fav,
+              }"
+              :title="titleButton(currency.fav)"
+            ></div>
+            <div class="table__body__item__star__number">
+              {{ i + 1 }}
+            </div>
           </div>
-        </div>
-      </td>
-      <td class="table__body__item table__body__item__hidden">
-        {{ currency.currency }}
-      </td>
-      <td class="table__body__item">
-        {{ currency.code }}
-      </td>
-      <td class="table__body__item">{{ currency.mid }}</td>
-    </tr>
-  </table>
+        </td>
+        <td class="table__body__item table__body__item__hidden">
+          {{ currency.currency }}
+        </td>
+        <td class="table__body__item">
+          {{ currency.code }}
+        </td>
+        <td class="table__body__item">{{ currency.mid }}</td>
+      </tr>
+    </table>
+
+    <div v-else class="table__empty">
+      Empty list!
+    </div>
+  </div>
 </template>
 
 <style lang="scss" scoped>
@@ -44,18 +58,29 @@
 </style>
 
 <script>
-import { mapState } from 'vuex'
-
 export default {
   name: 'CurrencyTable',
-  computed: {
-    ...mapState('CurrencyModule', {
-      getCurrencies: state => state.currency.data,
-    }),
+  props: {
+    currencies: {
+      type: Array,
+      required: true,
+    },
+    isFav: {
+      type: Boolean,
+      required: false,
+    },
+  },
+  data() {
+    return {
+      currencyGroup: [],
+    }
   },
   methods: {
-    addToFav(currencyCode, action) {
+    actionToFav(currencyCode, action) {
       this.$emit('action-to-fav', currencyCode, action)
+    },
+    titleButton(status) {
+      return !status ? 'add to favourite' : 'remove from favourite'
     },
   },
 }

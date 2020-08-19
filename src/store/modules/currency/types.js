@@ -6,11 +6,10 @@ const ActionsCurrency = {
 const MutationsCurrency = {
   SET_CURRENCY_DATA: 'SET_CURRENCY_DATA',
   SET_CURRENCY_DATE: 'SET_CURRENCY_DATE',
-  SET_CURRENCY_TO_FAV: 'SET_CURRENCY_TO_FAV',
 }
 
 const GettersCurrency = {
-  GET_CURRENCY: 'GET_CURRENCY',
+  GET_CURRENCY_FAV: 'GET_CURRENCY_FAV',
 }
 
 export { ActionsCurrency, MutationsCurrency, GettersCurrency }
