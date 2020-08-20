@@ -1,11 +1,17 @@
 <template>
   <div>
-    <div class="home__button">
+    <div class="page__button page__button--two-btn">
+      <ButtonPrimary
+        icon="left-arrow.svg"
+        @click.native="$router.push({ name: 'Home' })"
+        title="back to home"
+      />
       <ButtonPrimary
         name="Remove"
         v-if="GET_CURRENCY_FAV.length"
         :disabled="!currencyGroup.length"
         @click.native="modalRemove = true"
+        title="go to favourites"
       />
     </div>
     <CurrencyTable
@@ -25,14 +31,18 @@
         Remove: {{ currencyGroup.join(', ') }}?
       </template>
       <template #body-button>
-        <ButtonPrimary name="Remove" @click.native="removeCurrency" />
+        <ButtonPrimary
+          name="Remove"
+          :dark="true"
+          @click.native="removeCurrency"
+        />
       </template>
     </CenterModal>
   </div>
 </template>
 
 <style lang="scss" scoped>
-@import '@/assets/scss/views/favourites.scss';
+@import '@/assets/scss/views/page.scss';
 </style>
 
 <script>
@@ -83,6 +93,7 @@ export default {
     removeCurrency() {
       this.FETCH_CURRENCY_REMOVE(this.currencyGroup)
       this.modalRemove = false
+      this.currencyGroup = []
     },
   },
 }

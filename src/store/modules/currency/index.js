@@ -50,9 +50,11 @@ export default {
       { state, commit },
       payload,
     ) {
-      console.log(payload)
       const remCurrency = state.currency.data.map(element => {
-        console.log(element)
+        return {
+          ...element,
+          fav: payload.includes(element.code) ? false : element.fav,
+        }
       })
       commit(MutationsCurrency.SET_CURRENCY_DATA, remCurrency)
     },

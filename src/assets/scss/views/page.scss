@@ -1,8 +1,13 @@
-.home {
+.page {
   &__button {
     width: 100%;
     display: flex;
     justify-content: flex-end;
+
+    &--two-btn {
+      justify-content: space-between;
+      align-items: center;
+    }
 
     @media (max-width: map-get($widths, xs)) {
       justify-content: center;

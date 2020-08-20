@@ -1,6 +1,6 @@
 <template>
-  <div class="home">
-    <div class="home__button">
+  <div>
+    <div class="page__button">
       <ButtonPrimary
         name="Favourites"
         @click.native="$router.push({ name: 'Favourites' })"
@@ -14,7 +14,7 @@
 </template>
 
 <style lang="scss" scoped>
-@import '@/assets/scss/views/home.scss';
+@import '@/assets/scss/views/page.scss';
 </style>
 
 <script>

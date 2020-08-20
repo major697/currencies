@@ -19,8 +19,7 @@
             <input
               v-if="isFav"
               type="checkbox"
-              v-model="currencyGroup"
-              @change="$emit('update:currency-group', currencyGroup)"
+              v-model="getCurrencyGroup"
               :value="currency.code"
               title="select to remove"
             />
@@ -65,15 +64,24 @@ export default {
       type: Array,
       required: true,
     },
+    currencyGroup: {
+      type: Array,
+      default: () => [],
+    },
     isFav: {
       type: Boolean,
       required: false,
     },
   },
-  data() {
-    return {
-      currencyGroup: [],
-    }
+  computed: {
+    getCurrencyGroup: {
+      get() {
+        return this.currencyGroup
+      },
+      set(code) {
+        this.$emit('update:currency-group', code)
+      },
+    },
   },
   methods: {
     actionToFav(currencyCode, action) {

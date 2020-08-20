@@ -5,17 +5,18 @@
   &__empty {
     font-size: map-get($fontSizes, title);
     text-align: center;
+    color: map-get($colors, gray);
   }
 
   &__header {
     font-size: map-get($fontSizes, title);
-    color: map-get($colors, purple);
+    color: map-get($colors, gray);
     padding: map-get($margins, m3) 0;
 
     &__item {
       padding: map-get($margins, m1) 0;
       font-weight: 100;
-      border: 1px solid map-get($colors, purple);
+      border: 1px solid map-get($colors, gray);
 
       &__hidden {
         @media (max-width: map-get($widths, xs)) {
@@ -27,22 +28,22 @@
 
   &__body {
     font-size: map-get($fontSizes, body);
-    color: map-get($colors, black);
+    color: map-get($colors, gray);
     text-align: center;
-    border: 1px solid map-get($colors, purple);
+    border: 1px solid map-get($colors, gray);
     border-bottom-color: map-get($colors, white);
 
     &:last-child {
-      border-bottom-color: map-get($colors, purple);
+      border-bottom-color: map-get($colors, gray);
     }
 
     &:hover {
-      background-color: map-get($colors, purple);
-      color: map-get($colors, white);
+      background-color: map-get($colors, gray);
+      color: map-get($colors, black);
       transition: $transition;
 
       .table__body__item__star__number {
-        color: map-get($colors, white);
+        color: map-get($colors, black);
       }
     }
 
@@ -83,7 +84,7 @@
         }
 
         &__number {
-          color: map-get($colors, purple);
+          color: map-get($colors, gray);
           font-weight: 800;
         }
       }

@@ -1,6 +1,6 @@
 .app {
   font-family: $fontBook;
-  background-color: map-get($colors, sea);
+  background-color: map-get($colors, dark);
   font-display: swap;
   min-height: 100vh;
 
@@ -11,7 +11,7 @@
 
     &__title {
       text-align: center;
-      color: map-get($colors, purple);
+      color: map-get($colors, gray);
       font-size: map-get($fontSizes, bigTitle);
       padding-top: map-get($margins, m3);
       padding-bottom: map-get($margins, m5);

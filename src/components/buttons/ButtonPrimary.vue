@@ -1,5 +1,17 @@
 <template>
-  <button class="button" :disabled="disabled">{{ name }}</button>
+  <button
+    class="button"
+    :class="{ 'button--black': dark }"
+    :disabled="disabled"
+  >
+    <img
+      v-if="getIcon"
+      :src="getIcon"
+      alt="icon-button"
+      class="button__icon"
+    />
+    <span v-if="name">{{ name }}</span>
+  </button>
 </template>
 
 <style lang="scss" scoped>
@@ -12,11 +24,26 @@ export default {
   props: {
     name: {
       type: String,
-      required: true,
+      default: null,
     },
     disabled: {
       type: Boolean,
       required: false,
+    },
+    icon: {
+      type: String,
+      default: null,
+    },
+    dark: {
+      type: Boolean,
+      default: false,
+    },
+  },
+  computed: {
+    getIcon() {
+      return this.icon
+        ? require(`@/assets/img/svg/${this.icon}`)
+        : false
     },
   },
 }
