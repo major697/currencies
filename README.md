@@ -3,7 +3,7 @@ Test task (vue.js)
 
 ## Installation
 1. Run command in terminal: `git clone https://github.com/major697/currencies.git`
-2. Go to `currencies` folder: `cd currencies\`
+2. Go to `currencies`: `cd currencies\`
 3. Install `node_modules` using: `npm i`
 
 ## Start application
