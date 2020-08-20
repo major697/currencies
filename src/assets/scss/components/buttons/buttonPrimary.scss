@@ -1,0 +1,43 @@
+.button {
+  background-color: transparent;
+  border: 1px solid map-get($colors, gray);
+  color: map-get($colors, gray);
+  cursor: pointer;
+  padding: map-get($margins, m1);
+  border-radius: $radius;
+  margin: map-get($margins, m1) 0;
+  transition: $transition;
+
+  &--black {
+    border-color: map-get($colors, dark);
+    color: map-get($colors, black);
+
+    &:hover {
+      border-color: map-get($colors, dark);
+      background-color: map-get($colors, dark);
+      color: map-get($colors, gray);
+    }
+  }
+
+  &__icon {
+    width: 20px;
+    height: 20px;
+  }
+
+  &:disabled {
+    background-color: map-get($colors, block);
+    border-color: transparent;
+  }
+
+  &:hover {
+    border-color: map-get($colors, gray);
+
+    &:disabled {
+      border-color: transparent;
+    }
+  }
+
+  &:focus {
+    outline: none;
+  }
+}
