@@ -1,24 +1,14 @@
-# currencies
+# Currencies
+Test task (vue.js)
 
-## Project setup
-```
-npm install
-```
+## Installation
+1. Run command in terminal: `git clone https://github.com/major697/currencies.git`
+2. Go to `currencies` folder: `cd currencies\`
+3. Install `node_modules` using: `npm i`
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+## Start application
+1. Run application using `npm run serve`
+2. Open browser, and paste url address from terminal. E.g `http://localhost:8080/`
 
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+## License
+[MIT](https://choosealicense.com/licenses/mit/)
